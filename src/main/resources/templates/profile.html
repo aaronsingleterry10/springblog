@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"><head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8">
     <title>Profile</title>
 </head>
 <body>
 <h1>This is your profile!</h1>
 <h3>Welcome <span th:text="${user}"></span></h3>
+<h3>This is your username: <span th:text="${username}"></span></h3>
+<h3>This is your password: <span th:text="${password}"></span></h3>
+<ul th:each="ad : ${ads}">
+    <li th:text="${ad}"></li>
+</ul>
 </body>
 </html>
