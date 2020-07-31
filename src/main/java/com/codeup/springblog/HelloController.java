@@ -1,8 +1,7 @@
 package com.codeup.springblog;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
@@ -17,5 +16,23 @@ public class HelloController {
     @ResponseBody
     public String goodbye() {
         return "Goodbye from Spring!";
+    }
+
+//    @GetMapping("/hello/{name}")
+//    @ResponseBody
+//    public String sayHello(@PathVariable String name) {
+//        return "Hello, " + name;
+//    }
+
+    @GetMapping("/books/{id}")
+    @ResponseBody
+    public String getBook(@PathVariable long id) {
+        return "Viewing book " + id;
+    }
+
+    @RequestMapping(path = "/hello/{name}", method = RequestMethod.GET)
+    @ResponseBody
+    public String sayHello(@PathVariable String name) {
+        return "Hello " + name + " from a request a mapping!";
     }
 }
