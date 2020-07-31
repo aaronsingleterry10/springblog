@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class ProfileController {
+public class ExampleController {
 
-    @GetMapping("/profile/{username}")
-    public String goToProfile(@PathVariable String username, Model model) {
-        model.addAttribute("user", username);
-        return "profile";
+    @GetMapping("/example/{user}")
+    public String example(@PathVariable String user, Model model) {
+        model.addAttribute("user", user);
+        return "example";
     }
 }
