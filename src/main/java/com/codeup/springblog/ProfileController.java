@@ -13,8 +13,9 @@ import java.util.List;
 @Controller
 public class ProfileController {
 
-    @GetMapping("/profile")
-    public String goToProfile() {
+    @GetMapping("/profile/{username}")
+    public String goToProfile(@PathVariable String username, Model model) {
+        model.addAttribute("user", username);
         return "profile";
     }
 
