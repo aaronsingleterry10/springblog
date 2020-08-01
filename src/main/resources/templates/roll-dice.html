@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Roll Dice</title>
-</head>
+<head th:replace="partials/navbar :: head"/>
 <body>
+<nav th:replace="partials/navbar :: navbar"/>
 <h1>Let's play some Dice!</h1>
 <h3>Call a number between 1-6 to roll the die!</h3>
 <ul>
@@ -17,5 +15,6 @@
 </ul>
 <h3 th:text="${rolledNum}"></h3>
 <h3 th:text="${guessedNum}"></h3>
+<footer th:replace="partials/navbar :: footer"/>
 </body>
 </html>
