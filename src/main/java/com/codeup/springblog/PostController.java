@@ -1,6 +1,7 @@
 package com.codeup.springblog;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,20 +17,26 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public String getIndividualPost(@PathVariable int id) {
-        return "This is where an individual post with an id of " + id + " will be.";
+    public String getIndividualPost(@PathVariable int id, Model model) {
+        Post post = new Post(1, "Example Title", "No. So tell me, Marty, how long have you been in port? Oh, pleased to meet you, Calvin Marty Klein. Do you mind if I sit here? Now, of course not, Biff, now, I wouldn't want that to happen. Well uh, good, fine.");
+        String postTitle = post.getTitle();
+        String postBody = post.getBody();
+        model.addAttribute("id", id);
+        model.addAttribute("title", postTitle);
+        model.addAttribute("body", postBody);
+
+        return "/posts/show";
     }
 
-    @GetMapping("/posts/create")
-    @ResponseBody
-    public String createPost() {
-        return "This is where posts are created";
-    }
+//    @GetMapping("/posts/create")
+//    @ResponseBody
+//    public String createPost() {
+//        return "This is where posts are created";
+//    }
 
-    @PostMapping("/posts/create")
-    @ResponseBody
-    public String newPost() {
-        return "This is a new post create";
-    }
+//    @PostMapping("/posts/create")
+//    @ResponseBody
+//    public String newPost() {
+//        return "This is a new post create";
+//    }
 }
