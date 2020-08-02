@@ -21,9 +21,13 @@ public class PostController {
         Post post = new Post(1, "Example Title", "No. So tell me, Marty, how long have you been in port? Oh, pleased to meet you, Calvin Marty Klein. Do you mind if I sit here? Now, of course not, Biff, now, I wouldn't want that to happen. Well uh, good, fine.");
         String postTitle = post.getTitle();
         String postBody = post.getBody();
-        model.addAttribute("id", id);
-        model.addAttribute("title", postTitle);
-        model.addAttribute("body", postBody);
+//        model.addAttribute("id", id);
+        if (id == post.getId()) {
+            model.addAttribute("title","Title: " + postTitle);
+            model.addAttribute("body", postBody);
+        } else {
+            model.addAttribute("title", "When a post has been selected, it will be displayed here.");
+        }
 
         return "/posts/show";
     }
