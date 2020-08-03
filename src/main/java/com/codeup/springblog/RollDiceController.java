@@ -29,7 +29,7 @@ public class RollDiceController {
         dice.add(num2);
         dice.add(num3);
 
-        model.addAttribute("rolledNum", "Your lucky numbers are: " + num + ", " + num2 + ", " + num3 + ".");
+        model.addAttribute("rolledNum", "Your numbers you've rolled are: " + num + ", " + num2 + ", " + num3 + ".");
         model.addAttribute("userNum", "The number you have chosen is: " + n + ".");
         int howManyMatches = 0;
         for(Integer x : dice) {
@@ -39,13 +39,13 @@ public class RollDiceController {
         }
 
         if (howManyMatches == 1) {
-            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches");
+            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches.");
         } else if(howManyMatches == 2) {
-            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches");
+            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches.");
         } else if(howManyMatches == 3) {
-            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches");
+            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches.");
         } else {
-            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches");
+            model.addAttribute("guessedNum", "You have " + howManyMatches + " matches.");
         }
         return "roll-dice";
     }

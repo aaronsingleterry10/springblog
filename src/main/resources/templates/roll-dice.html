@@ -5,14 +5,12 @@
 <nav th:replace="partials/navbar :: navbar"/>
 <h1>Let's play some Dice!</h1>
 <h3>Call a number between 1-6 to roll the die!</h3>
-<ul>
-    <li><a href="/roll-dice/1">1</a></li>
-    <li><a href="/roll-dice/2">2</a></li>
-    <li><a href="/roll-dice/3">3</a></li>
-    <li><a href="/roll-dice/4">4</a></li>
-    <li><a href="/roll-dice/5">5</a></li>
-    <li><a href="/roll-dice/6">6</a></li>
-</ul>
+<div><a href="/roll-dice/1">---1----</a></div>
+<div><a href="/roll-dice/2">---2----</a></div>
+<div><a href="/roll-dice/3">---3----</a></div>
+<div><a href="/roll-dice/4">---4----</a></div>
+<div><a href="/roll-dice/5">---5----</a></div>
+<div><a href="/roll-dice/6">---6----</a></div>
 <h3 th:text="${rolledNum}"></h3>
 <h3 th:text="${userNum}"></h3>
 <h3 th:text="${guessedNum}"></h3>
