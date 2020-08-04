@@ -10,9 +10,10 @@ public class Dog {
 //
 //  1) id
     @Id
-    @Column(columnDefinition = "int(11) unsigned NOT NULL AUTO_INCREMENT")
+    @Column(columnDefinition = "int(11) unsigned NOT NULL AUTO_INCREMENT UNIQUE")
     private int id;
 //  2) age
+
     @Column(columnDefinition = "TINYINT(3) UNSIGNED NOT NULL")
     private short age;
 //  3) name
