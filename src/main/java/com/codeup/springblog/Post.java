@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(length = 50, nullable = false)
     private String title;
@@ -17,16 +17,16 @@ public class Post {
 
     public Post(){}
 
-    public Post(int id, String title, String body) {
+    public Post(long id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
