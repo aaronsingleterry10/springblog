@@ -10,5 +10,7 @@
         <h3>Title: <span th:text="${post.title}"></span></h3>
         <p th:text="${post.body}"></p>
     </div>
+    <h3><a th:href="@{/posts/create}">Add a new post.</a></h3>
+
 </body>
 </html>
