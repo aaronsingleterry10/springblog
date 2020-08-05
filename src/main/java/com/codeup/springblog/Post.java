@@ -15,6 +15,10 @@ public class Post {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String body;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Post parentPost;
+
     public Post(){}
 
     public Post(long id, String title, String body) {
@@ -44,4 +48,11 @@ public class Post {
         this.body = body;
     }
 
+    public Post getParentPost() {
+        return parentPost;
+    }
+
+    public void setParentPost(Post parentPost) {
+        this.parentPost = parentPost;
+    }
 }
