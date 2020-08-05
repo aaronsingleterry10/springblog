@@ -48,6 +48,8 @@ public class PostController {
     @GetMapping("/posts/update/{id}")
     public String toUpdatePost(@PathVariable long id, Model model) {
         model.addAttribute("postId", id);
+        model.addAttribute("title", postsDao.findById(id).getTitle());
+        model.addAttribute("body", postsDao.findById(id).getBody());
         return "/posts/update";
     }
 

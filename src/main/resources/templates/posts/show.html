@@ -4,12 +4,12 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
 <div class="card border-dark mt-3" style="max-width: 50rem;">
-    <div class="card-header">Selected post:</div>
+    <h5 class="card-header alert alert-primary">Selected post:</h5>
     <div class="card-body text-dark">
         <h5 th:text="${title}" class="card-title"></h5>
         <p th:text="${body}" class="card-text"></p>
-        <a th:href="@{/posts/update/{id}(id=${postId})}" class="btn btn-primary">Edit</a>
-        <a th:href="@{/posts/delete/{id}(id=${postId})}" class="btn btn-primary">Delete</a>
+        <a th:href="@{/posts/update/{id}(id=${postId})}" class="btn btn-secondary">Edit</a>
+        <a th:href="@{/posts/delete/{id}(id=${postId})}" class="btn btn-secondary">Delete</a>
     </div>
 </div>
 </body>

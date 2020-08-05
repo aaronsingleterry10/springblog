@@ -9,17 +9,17 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Title</span>
             </div>
-            <input type="text" name="title" id="title" aria-label="First name" class="form-control">
+            <input type="text" name="title" id="title" aria-label="First name" class="form-control" th:placeholder="${title}">
         </div>
         <br>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Body</span>
             </div>
-            <textarea class="form-control" name="body" id="body" aria-label="Body"></textarea>
+            <textarea class="form-control" name="body" id="body" aria-label="Body" th:placeholder="${body}"></textarea>
         </div>
         <br>
-        <button class="btn btn-outline-secondary">Submit</button>
+        <button class="btn btn-secondary btn-lg btn-block">Update post!</button>
     </form>
 </body>
 </html>
