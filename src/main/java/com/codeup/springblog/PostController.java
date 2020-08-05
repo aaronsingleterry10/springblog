@@ -25,11 +25,12 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String getIndividualPost(@PathVariable long id, Model model) {
-        model.addAttribute("postId", id);
+        Post singlePost = postsDao.getOne(id);
+//        model.addAttribute("postId", id);
 //        refactor code below to pass in the object to the view instead of just "title" and "body"
-        model.addAttribute("title", postsDao.findById(id).getTitle());
-        model.addAttribute("body", postsDao.findById(id).getBody());
-
+//        model.addAttribute("title", postsDao.findById(id).getTitle());
+//        model.addAttribute("body", postsDao.findById(id).getBody());
+        model.addAttribute("post", singlePost);
         return "/posts/show";
     }
 

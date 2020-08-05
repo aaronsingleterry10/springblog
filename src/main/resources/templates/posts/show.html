@@ -6,11 +6,11 @@
 <div class="card border-dark mt-3" style="max-width: 50rem;">
     <h5 class="card-header alert alert-primary">Selected post:</h5>
     <div class="card-body text-dark">
-        <h5 th:text="${title}" class="card-title"></h5>
-        <p th:text="${body}" class="card-text"></p>
-        <a th:href="@{/posts/update/{id}(id=${postId})}" class="btn btn-secondary">Edit</a>
+        <h5 th:text="${post.title}" class="card-title"></h5>
+        <p th:text="${post.body}" class="card-text"></p>
+        <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-secondary">Edit</a>
 <!--        refactor code below to use a form and a button instead of link-->
-        <a th:href="@{/posts/delete/{id}(id=${postId})}" class="btn btn-secondary">Delete</a>
+        <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn btn-secondary">Delete</a>
     </div>
 </div>
 </body>
