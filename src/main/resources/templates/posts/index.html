@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts</title>
-</head>
+<head th:replace="partials/navbar :: head"/>
 <body>
+    <nav th:replace="partials/navbar :: navbar"/>
     <h1>Here are the list of posts:</h1>
     <div th:each="post : ${posts}">
         <h3>Title: <span th:text="${post.title}"></span></h3>
         <p th:text="${post.body}"></p>
-        <a th:href="@{/posts/update/{id}(id=${post.id})}">Edit</a>
-        <a th:href="@{/posts/delete/{id}(id=${post.id})}">Delete</a>
-
-
+        <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn btn-primary">Delete</a>
     </div>
     <h3><a th:href="@{/posts/create}">Add a new post.</a></h3>
 
