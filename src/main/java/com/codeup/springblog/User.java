@@ -19,7 +19,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "parentPost")
+    @OneToMany(mappedBy = "parentUser")
     private List<Post> posts;
 
     public User(){}

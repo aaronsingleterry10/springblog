@@ -6,14 +6,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class PostController {
 
     private final PostsRepository postsDao;
 
-    public PostController(PostsRepository postsDao) {
+    private final UserRepository usersDao;
+
+    public PostController(PostsRepository postsDao, UserRepository usersDao) {
         this.postsDao = postsDao;
+        this.usersDao = usersDao;
     }
 
     @GetMapping("/posts")
@@ -37,9 +41,14 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
+        Random rand = new Random();
+        int id = rand.nextInt(4) + 1;
+        long newId = id;
+        User user = usersDao.findById(newId);
         Post newPost = new Post();
         newPost.setTitle(title);
         newPost.setBody(body);
+        newPost.setParentUser(user);
         postsDao.save(newPost);
         return "redirect:/posts";
     }

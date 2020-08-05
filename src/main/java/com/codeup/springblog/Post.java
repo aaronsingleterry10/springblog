@@ -17,7 +17,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Post parentPost;
+    private User parentUser;
 
     public Post(){}
 
@@ -48,11 +48,11 @@ public class Post {
         this.body = body;
     }
 
-    public Post getParentPost() {
-        return parentPost;
+    public User getParentUser() {
+        return parentUser;
     }
 
-    public void setParentPost(Post parentPost) {
-        this.parentPost = parentPost;
+    public void setParentUser(User parentUser) {
+        this.parentUser = parentUser;
     }
 }
