@@ -18,6 +18,7 @@ public class PostController {
 
     @GetMapping("/posts")
     public String getPosts(Model model) {
+
         model.addAttribute("posts", postsDao.findAll());
         return "/posts/index";
     }
@@ -25,6 +26,7 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String getIndividualPost(@PathVariable long id, Model model) {
         model.addAttribute("postId", id);
+//        refactor code below to pass in the object to the view instead of just "title" and "body"
         model.addAttribute("title", postsDao.findById(id).getTitle());
         model.addAttribute("body", postsDao.findById(id).getBody());
 
@@ -47,6 +49,7 @@ public class PostController {
 
     @GetMapping("/posts/update/{id}")
     public String toUpdatePost(@PathVariable long id, Model model) {
+//        refactor code to use .getOne method to send over the object instead of individual properties
         model.addAttribute("postId", id);
         model.addAttribute("title", postsDao.findById(id).getTitle());
         model.addAttribute("body", postsDao.findById(id).getBody());

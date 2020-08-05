@@ -9,6 +9,7 @@
         <h5 th:text="${title}" class="card-title"></h5>
         <p th:text="${body}" class="card-text"></p>
         <a th:href="@{/posts/update/{id}(id=${postId})}" class="btn btn-secondary">Edit</a>
+<!--        refactor code below to use a form and a button instead of link-->
         <a th:href="@{/posts/delete/{id}(id=${postId})}" class="btn btn-secondary">Delete</a>
     </div>
 </div>
