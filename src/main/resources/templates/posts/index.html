@@ -9,7 +9,9 @@
     <div th:each="post : ${posts}">
         <h3>Title: <span th:text="${post.title}"></span></h3>
         <p th:text="${post.body}"></p>
-        <a th:href="@{/posts/update/{id}(id=${post.id})}">Edit post</a>
+        <a th:href="@{/posts/update/{id}(id=${post.id})}">Edit</a>
+        <a th:href="@{/posts/delete/{id}(id=${post.id})}">Delete</a>
+
 
     </div>
     <h3><a th:href="@{/posts/create}">Add a new post.</a></h3>
