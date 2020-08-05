@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/navbar :: head" />
+<head th:replace="partials/navbar :: head"/>
 <body>
-    <nav th:replace="partials/navbar :: navbar"/>
-    <h1>Here's your post</h1>
-    <h3><span th:text="${title}"></span></h3>
-    <p th:text="${body}"></p>
+<nav th:replace="partials/navbar :: navbar"/>
+<div class="card border-dark mt-3" style="max-width: 50rem;">
+    <div class="card-header">Selected post:</div>
+    <div class="card-body text-dark">
+        <h5 th:text="${title}" class="card-title"></h5>
+        <p th:text="${body}" class="card-text"></p>
+        <a th:href="@{/posts/update/{id}(id=${postId})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{/posts/delete/{id}(id=${postId})}" class="btn btn-primary">Delete</a>
+    </div>
+</div>
 </body>
 </html>

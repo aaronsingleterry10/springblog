@@ -16,36 +16,18 @@ public class PostController {
         this.postsDao = postsDao;
     }
 
-//    List<Post> listOfPosts = new ArrayList<>();
-//    Post post = new Post(1, "Example Title", "No. So tell me, Marty, how long have you been in port? Oh, pleased to meet you, Calvin Marty Klein. Do you mind if I sit here? Now, of course not, Biff, now, I wouldn't want that to happen. Well uh, good, fine.");
-//    Post post2 = new Post(2, "Title2", "Nah, I just don't think I'm cut out for music. Marty, you interacted with anybody else today, besides me? Biff. Good, you could start by sweeping the floor. I don't wanna know your name. I don't wanna know anything anything about you.");
-//    Post post3 = new Post(3, "Title3", "Oh, uh, hey you, get your damn hands off her. Do you really think I oughta swear? Uh, I think so. Why is she gonna get angry with you? Yeah. Sam, quit fiddling with that thing and come in here and eat your dinner.");
-
     @GetMapping("/posts")
     public String getPosts(Model model) {
-//        listOfPosts.add(post);
-//        listOfPosts.add(post2);
-//        listOfPosts.add(post3);
         model.addAttribute("posts", postsDao.findAll());
         return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String getIndividualPost(@PathVariable long id, Model model) {
-//        listOfPosts.add(post);
-//        listOfPosts.add(post2);
-//        listOfPosts.add(post3);
-//        for(Post x : listOfPosts) {
-//            if(x.getId() == id) {
-//                model.addAttribute("title", "Title: " + x.getTitle());
-//                model.addAttribute("body", x.getBody());
-//                break;
-//            } else {
-//                model.addAttribute("title", "When a post has been selected, it will be displayed here.");
-//            }
-//        }
+        model.addAttribute("postId", id);
         model.addAttribute("title", postsDao.findById(id).getTitle());
         model.addAttribute("body", postsDao.findById(id).getBody());
+
         return "/posts/show";
     }
 
