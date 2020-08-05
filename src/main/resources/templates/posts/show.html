@@ -10,7 +10,9 @@
         <p th:text="${post.body}" class="card-text"></p>
         <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-secondary">Edit</a>
 <!--        refactor code below to use a form and a button instead of link-->
-        <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn btn-secondary">Delete</a>
+        <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post">
+            <button class="btn btn-secondary">Delete</button>
+        </form>
     </div>
 </div>
 </body>
