@@ -62,4 +62,19 @@ public class PostController {
         postsDao.save(newPost);
         return "redirect:/posts";
     }
+
+    @GetMapping("/posts/update/{id}")
+    public String toUpdatePost(@PathVariable long id, Model model) {
+        model.addAttribute("postId", id);
+        return "/posts/update";
+    }
+
+    @PostMapping("/posts/update/{id}")
+    public String updatePost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model model) {
+        Post updatePost = postsDao.findById(id);
+        updatePost.setTitle(title);
+        updatePost.setBody(body);
+        postsDao.save(updatePost);
+        return "redirect:/posts";
+    }
 }
