@@ -8,6 +8,9 @@
     <div class="card-body text-dark">
         <h5 th:text="${post.title}" class="card-title"></h5>
         <p th:text="${post.body}" class="card-text"></p>
+        <p th:each="tag : ${post.tags}">
+            Tags: <span th:text="${tag.name}"></span>
+        </p>
         <p><strong th:text="${post.parentUser.email}"></strong></p>
         <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-secondary">Edit</a>
         <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post" class="d-inline">
