@@ -1,6 +1,7 @@
 package com.codeup.springblog;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -18,6 +19,14 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User parentUser;
+
+    @ManyToMany
+    @JoinTable(
+            name = "post_tag",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
+    )
+    private List<Tag> tags;
 
     public Post(){}
 
@@ -54,5 +63,13 @@ public class Post {
 
     public void setParentUser(User parentUser) {
         this.parentUser = parentUser;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }
