@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/navbar :: head" />
+<head th:replace="partials/navbar :: head"/>
 <body>
-    <nav th:replace="partials/navbar :: navbar"/>
+<nav th:replace="partials/navbar :: navbar"/>
+<main class="container mt-5">
     <h1>Update post</h1>
     <form th:action="@{/posts/update/{id}(id=${post.id})}" method="post">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">Title</span>
             </div>
-            <input type="text" name="title" id="title" aria-label="First name" class="form-control" th:placeholder="${post.title}">
+            <input type="text" name="title" id="title" aria-label="First name" class="form-control" th:value="${post.title}" autofocus>
         </div>
         <br>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Body</span>
             </div>
-            <textarea class="form-control" name="body" id="body" aria-label="Body" th:placeholder="${post.body}"></textarea>
+            <textarea class="form-control" name="body" id="body" aria-label="Body" th:value="${post.body}"></textarea>
         </div>
         <br>
         <button class="btn btn-secondary btn-lg btn-block">Update post!</button>
     </form>
+</main>
 </body>
 </html>
