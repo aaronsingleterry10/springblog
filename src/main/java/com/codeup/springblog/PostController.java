@@ -71,13 +71,21 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String updatePost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model model) {
-        Post updatePost = postsDao.findById(id);
-        updatePost.setTitle(title);
-        updatePost.setBody(body);
-        postsDao.save(updatePost);
+    public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
+        User user = usersDao.getOne(id);
+        post.setParentUser(user);
+        postsDao.save(post);
         return "redirect:/posts";
     }
+
+//    @PostMapping("/posts/{id}/edit")
+//    public String updatePost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
+//        Post updatePost = postsDao.findById(id);
+//        updatePost.setTitle(title);
+//        updatePost.setBody(body);
+//        postsDao.save(updatePost);
+//        return "redirect:/posts";
+//    }
 
     @PostMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
