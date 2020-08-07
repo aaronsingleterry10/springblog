@@ -35,23 +35,33 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    public String createPost() {
+    public String createPost(Model model) {
+        model.addAttribute("post", new Post());
         return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
+    public String newPost(@ModelAttribute Post post) {
         Random rand = new Random();
         int id = rand.nextInt(4) + 1;
         long newId = id;
         User user = usersDao.findById(newId);
-        Post newPost = new Post();
-        newPost.setTitle(title);
-        newPost.setBody(body);
-        newPost.setParentUser(user);
-        postsDao.save(newPost);
+        post.setParentUser(user);
+        postsDao.save(post);
         return "redirect:/posts";
     }
+//    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
+//        Random rand = new Random();
+//        int id = rand.nextInt(4) + 1;
+//        long newId = id;
+//        User user = usersDao.findById(newId);
+//        Post newPost = new Post();
+//        newPost.setTitle(title);
+//        newPost.setBody(body);
+//        newPost.setParentUser(user);
+//        postsDao.save(newPost);
+//        return "redirect:/posts";
+//    }
 
     @GetMapping("/posts/update/{id}")
     public String toUpdatePost(@PathVariable long id, Model model) {

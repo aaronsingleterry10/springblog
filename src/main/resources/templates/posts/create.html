@@ -4,19 +4,19 @@
 <body>
     <nav th:replace="partials/navbar :: navbar"/>
     <h1>Create a post</h1>
-    <form action="/posts/create" method="post">
+    <form action="/posts/create" method="post" th:object="${post}">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">Title</span>
             </div>
-            <input type="text" name="title" id="title" aria-label="First name" class="form-control">
+            <input type="text" name="title" id="title" aria-label="First name" class="form-control" th:field="*{title}">
         </div>
         <br>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Body</span>
             </div>
-            <textarea class="form-control" name="body" id="body" aria-label="Body"></textarea>
+            <textarea class="form-control" name="body" id="body" aria-label="Body" th:field="*{body}"></textarea>
         </div>
         <br>
         <button class="btn btn-secondary btn-lg btn-block">Create post!</button>
