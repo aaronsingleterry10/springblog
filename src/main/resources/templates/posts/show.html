@@ -12,7 +12,7 @@
             Tags: <span th:text="${tag.name}"></span>
         </p>
         <p><strong th:text="${post.parentUser.email}"></strong></p>
-        <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-secondary">Edit</a>
+        <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn btn-secondary">Edit</a>
         <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post" class="d-inline">
             <button class="btn btn-secondary">Delete</button>
         </form>

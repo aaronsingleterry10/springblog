@@ -63,14 +63,14 @@ public class PostController {
 //        return "redirect:/posts";
 //    }
 
-    @GetMapping("/posts/update/{id}")
+    @GetMapping("/posts/{id}/edit")
     public String toUpdatePost(@PathVariable long id, Model model) {
         Post updatePost = postsDao.getOne(id);
         model.addAttribute("post", updatePost);
         return "/posts/update";
     }
 
-    @PostMapping("/posts/update/{id}")
+    @PostMapping("/posts/{id}/edit")
     public String updatePost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model model) {
         Post updatePost = postsDao.findById(id);
         updatePost.setTitle(title);

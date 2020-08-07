@@ -5,7 +5,7 @@
 <nav th:replace="partials/navbar :: navbar"/>
 <main class="container mt-5">
     <h1>Update post</h1>
-    <form th:action="@{/posts/update/{id}(id=${post.id})}" method="post">
+    <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">Title</span>
