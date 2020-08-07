@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/navbar :: head" />
+<head th:replace="partials/navbar :: head"/>
 <body>
-    <nav th:replace="partials/navbar :: navbar"/>
+<nav th:replace="partials/navbar :: navbar"/>
+<main class="container mt-5">
     <h1>Create a post</h1>
     <form action="/posts/create" method="post" th:object="${post}">
         <div class="input-group input-group-sm">
@@ -21,5 +22,6 @@
         <br>
         <button class="btn btn-secondary btn-lg btn-block">Create post!</button>
     </form>
+</main>
 </body>
 </html>
