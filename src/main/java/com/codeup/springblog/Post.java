@@ -30,10 +30,6 @@ public class Post {
 
     public Post(){}
 
-    public Post(User parentUser) {
-        this.parentUser = parentUser;
-    }
-
     public Post(long id, String title, String body) {
         this.id = id;
         this.title = title;
