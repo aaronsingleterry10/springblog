@@ -12,12 +12,13 @@ import java.util.Random;
 public class PostController {
 
     private final PostsRepository postsDao;
-
     private final UserRepository usersDao;
+    private final EmailService emailService;
 
-    public PostController(PostsRepository postsDao, UserRepository usersDao) {
+    public PostController(PostsRepository postsDao, UserRepository usersDao, EmailService emailService) {
         this.postsDao = postsDao;
         this.usersDao = usersDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -48,6 +49,7 @@ public class PostController {
         User user = usersDao.findById(newId);
         post.setParentUser(user);
         postsDao.save(post);
+        emailService.prepareAndSend(post, "New Post Alert", "Hello, this is just a message alerting you that you have created a new post!");
         return "redirect:/posts";
     }
 //    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
