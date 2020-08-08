@@ -5,6 +5,7 @@ import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostsRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
+import com.codeup.springblog.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +19,26 @@ public class PostController {
     private final PostsRepository postsDao;
     private final UserRepository usersDao;
     private final EmailService emailService;
+    private final PostService postService;
 
-    public PostController(PostsRepository postsDao, UserRepository usersDao, EmailService emailService) {
+    public PostController(PostsRepository postsDao, UserRepository usersDao, EmailService emailService, PostService postService) {
         this.postsDao = postsDao;
         this.usersDao = usersDao;
         this.emailService = emailService;
+        this.postService = postService;
     }
 
     @GetMapping("/posts")
     public String getPosts(Model model) {
-        List<Post> allPosts = postsDao.findAll();
-        model.addAttribute("posts", allPosts);
+//        List<Post> allPosts = postsDao.findAll();
+        model.addAttribute("posts", postService.returnPosts());
         return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String getIndividualPost(@PathVariable long id, Model model) {
-        Post singlePost = postsDao.getOne(id);
-        model.addAttribute("post", singlePost);
+//        Post singlePost = postsDao.getOne(id);
+        model.addAttribute("post", postService.returnIndividualPost(id));
         return "/posts/show";
     }
 
@@ -50,9 +53,10 @@ public class PostController {
         Random rand = new Random();
         int id = rand.nextInt(4) + 1;
         long newId = id;
-        User user = usersDao.findById(newId);
-        post.setParentUser(user);
-        postsDao.save(post);
+//        User user = usersDao.findById(newId);
+//        post.setParentUser(user);
+//        postsDao.save(post);
+        postService.createNewPost(post, newId);
         emailService.prepareAndSend(post, "New Post Alert", "Hello, this is just a message alerting you that you have created a new post!");
         return "redirect:/posts";
     }
