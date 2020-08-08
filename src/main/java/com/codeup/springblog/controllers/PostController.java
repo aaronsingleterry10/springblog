@@ -1,5 +1,6 @@
-package com.codeup.springblog;
+package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -74,7 +75,7 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
-        User user = usersDao.getOne(id);
+        User user = postsDao.getOne(id).getParentUser();
         post.setParentUser(user);
         postsDao.save(post);
         return "redirect:/posts";
