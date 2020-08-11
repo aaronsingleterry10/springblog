@@ -4,7 +4,7 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
 <h1 class="alert alert-primary" role="alert">
-    Welcome to the Post!
+    Welcome to the Post,  <span th:text="${#authentication.principal.username}"></span>!
 </h1>
 <div sec:authorize="isAuthenticated()">
     <div>User ID: <span th:text="${#authentication.principal.id}"></span></div>
