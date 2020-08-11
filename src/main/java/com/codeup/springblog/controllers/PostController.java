@@ -6,6 +6,7 @@ import com.codeup.springblog.repositories.PostsRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
 import com.codeup.springblog.services.PostService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,8 @@ public class PostController {
     @GetMapping("/posts")
     public String getPosts(Model model) {
 //        List<Post> allPosts = postsDao.findAll();
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(loggedInUser.getUsername());
         model.addAttribute("posts", postService.returnPosts());
         return "/posts/index";
     }
@@ -44,20 +47,28 @@ public class PostController {
 
     @GetMapping("/posts/create")
     public String createPost(Model model) {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(loggedInUser.getUsername());
+        System.out.println(loggedInUser.getId());
         model.addAttribute("post", new Post());
+//        model.addAttribute("user", loggedInUser);
         return "/posts/create";
     }
 
     @PostMapping("/posts/create")
     public String newPost(@ModelAttribute Post post) {
-        Random rand = new Random();
-        int id = rand.nextInt(4) + 1;
-        long newId = id;
+//        Random rand = new Random();
+//        int id = rand.nextInt(4) + 1;
+//        long newId = id;
 //        User user = usersDao.findById(newId);
-//        post.setParentUser(user);
-//        postsDao.save(post);
-        postService.createNewPost(post, newId);
-        emailService.prepareAndSend(post, "New Post Alert", "Hello, this is just a message alerting you that you have created a new post!");
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setParentUser(user);
+        postsDao.save(post);
+//        User loggedInUser = usersDao.findByUsername(user.getUsername());
+        System.out.println(user.getUsername());
+        System.out.println(user.getId());
+//        postService.createNewPost(post, loggedInUser.getId());
+//        emailService.prepareAndSend(post, "New Post Alert", "Hello, this is just a message alerting you that you have created a new post!");
         return "redirect:/posts";
     }
 //    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {

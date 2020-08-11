@@ -5,7 +5,7 @@
 <nav th:replace="partials/navbar :: navbar"/>
 <main class="container mt-5">
     <h1>Create a post</h1>
-    <form action="/posts/create" method="post" th:object="${post}">
+    <form th:action="@{/posts/create}" method="post" th:object="${post}">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">Title</span>
@@ -19,6 +19,7 @@
             </div>
             <textarea class="form-control" name="body" id="body" aria-label="Body" th:field="*{body}"></textarea>
         </div>
+<!--        <input type="hidden" th:object="${user}">-->
         <br>
         <button class="btn btn-secondary btn-lg btn-block">Create post!</button>
     </form>

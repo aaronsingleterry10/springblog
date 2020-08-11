@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/navbar :: head"/>
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
 <h1 class="alert alert-primary" role="alert">
     Welcome to the Post!
 </h1>
+<div sec:authorize="isAuthenticated()">
+    <div>User ID: <span th:text="${#authentication.principal.id}"></span></div>
+    <div>Username: <span th:text="${#authentication.principal.username}"></span></div>
+    <div>Email: <span th:text="${#authentication.principal.email}"></span></div>
+</div>
+
 
 
 <div class="list-group">
