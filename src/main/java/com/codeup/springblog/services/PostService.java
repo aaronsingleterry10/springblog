@@ -33,7 +33,4 @@ public class PostService {
        post.setParentUser(user);
        postsDao.save(post);
     }
-
-
-
 }
