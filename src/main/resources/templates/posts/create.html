@@ -5,12 +5,14 @@
 <nav th:replace="partials/navbar :: navbar"/>
 <main class="container mt-5">
     <h1>Create a post</h1>
+    <p th:if="${invalidPost}" class="alert alert-danger">This title has already been used!</p>
     <form th:action="@{/posts/create}" method="post" th:object="${post}">
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text">Title</span>
             </div>
-            <input type="text" name="title" id="title" aria-label="First name" class="form-control" th:field="*{title}" autofocus>
+            <input type="text" name="title" id="title" aria-label="First name" class="form-control" th:field="*{title}"
+                   autofocus>
         </div>
         <br>
         <div class="input-group">
@@ -19,7 +21,7 @@
             </div>
             <textarea class="form-control" name="body" id="body" aria-label="Body" th:field="*{body}"></textarea>
         </div>
-<!--        <input type="hidden" th:object="${user}">-->
+        <!--        <input type="hidden" th:object="${user}">-->
         <br>
         <button class="btn btn-secondary btn-lg btn-block">Create post!</button>
     </form>
