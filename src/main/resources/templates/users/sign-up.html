@@ -6,14 +6,6 @@
 <main class="container mt-5">
     <h1>Create an account</h1>
     <form th:action="@{/sign-up}" method="POST" th:object="${user}">
-        <!--    <label for="username">Username</label>-->
-        <!--    <input id="username" th:field="*{username}" />-->
-
-        <!--    <label for="email">Email</label>-->
-        <!--    <input id="email" th:field="*{email}" />-->
-
-        <!--    <label for="password">Password</label>-->
-        <!--    <input id="password" type="password" th:field="*{password}" />-->
         <div th:if="${usernameTaken}" class="alert alert-danger">
             The username you have provided has been used already. Choose a different username.
         </div>
