@@ -23,10 +23,13 @@
                 </li>
             </th:block>
             <th:block sec:authorize="isAuthenticated()">
-                <li>
-                    <form th:action="@{/logout}" th:method="post" class="form-inline">
-                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                <li class="nav-item active">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="nav-link btn mt-0" style="margin-top: 8px">Logout</button>
                     </form>
+                </li>
+                <li class="nav-item active">
+                    <a th:href="@{/posts/create}" class="nav-link">Create a Post</a>
                 </li>
             </th:block>
         </ul>
