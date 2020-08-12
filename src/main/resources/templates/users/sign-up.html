@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Sign up</title>
-</head>
+<head th:replace="partials/navbar :: head"/>
 <body>
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
+<nav th:replace="partials/navbar :: navbar"/>
+<main class="container mt-5">
+    <h1>Create an account</h1>
+    <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+        <!--    <label for="username">Username</label>-->
+        <!--    <input id="username" th:field="*{username}" />-->
 
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+        <!--    <label for="email">Email</label>-->
+        <!--    <input id="email" th:field="*{email}" />-->
 
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
-
-    <input value="Sign me up!" type="submit" />
-</form>
+        <!--    <label for="password">Password</label>-->
+        <!--    <input id="password" type="password" th:field="*{password}" />-->
+        <div th:if="${usernameTaken}" class="alert alert-danger">
+            The username you have provided has been used already. Choose a different username.
+        </div>
+        <div th:if="${emailTaken}" class="alert alert-danger">
+            The email you have provided has been used already. Choose a different email.
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" class="form-control" id="username" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" class="form-control" id="password" required>
+        </div>
+        <input value="Sign me up!" type="submit"/>
+    </form>
+</main>
 </body>
 </html>

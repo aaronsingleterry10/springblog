@@ -26,7 +26,16 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
+    public String saveUser(@ModelAttribute User user, Model model){
+        if (users.findByUsername(user.getUsername()) != null) {
+            boolean usernameTaken = true;
+            model.addAttribute("usernameTaken", usernameTaken);
+            return "users/sign-up";
+        } else if (users.findByEmail(user.getEmail()) != null) {
+            boolean emailTaken = true;
+            model.addAttribute("emailTaken", emailTaken);
+            return "users/sign-up";
+        }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         users.save(user);
