@@ -3,16 +3,19 @@
 <head th:replace="partials/navbar :: head"/>
 <body>
 <nav th:replace="partials/navbar :: navbar"/>
+<!--<th:block sec:authorize="!isAuthenticated()">-->
+<!--<h1 class="alert alert-primary" role="alert">-->
+<!--    Welcome to the Post,  <span th:text="${#authentication.principal.username}"></span>!-->
+<!--</h1>-->
+<!--<div sec:authorize="isAuthenticated()">-->
+<!--    <div>User ID: <span th:text="${#authentication.principal.id}"></span></div>-->
+<!--    <div>Username: <span th:text="${#authentication.principal.username}"></span></div>-->
+<!--    <div>Email: <span th:text="${#authentication.principal.email}"></span></div>-->
+<!--</div>-->
+<!--</th:block>-->
 <h1 class="alert alert-primary" role="alert">
-    Welcome to the Post,  <span th:text="${#authentication.principal.username}"></span>!
+    Welcome to the Post!
 </h1>
-<div sec:authorize="isAuthenticated()">
-    <div>User ID: <span th:text="${#authentication.principal.id}"></span></div>
-    <div>Username: <span th:text="${#authentication.principal.username}"></span></div>
-    <div>Email: <span th:text="${#authentication.principal.email}"></span></div>
-</div>
-
-
 
 <div class="list-group">
     <a th:each="post : ${posts}" th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}" class="list-group-item list-group-item-action"></a>

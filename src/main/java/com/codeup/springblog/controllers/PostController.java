@@ -32,7 +32,7 @@ public class PostController {
     @GetMapping("/posts")
     public String getPosts(Model model) {
 //        List<Post> allPosts = postsDao.findAll();
-        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("posts", postService.returnPosts());
         return "/posts/index";
     }
@@ -56,10 +56,6 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String newPost(@ModelAttribute Post post, Model model) {
-//        Random rand = new Random();
-//        int id = rand.nextInt(4) + 1;
-//        long newId = id;
-//        User user = usersDao.findById(newId);
         if (postsDao.findByTitle(post.getTitle()) != null) {
             boolean invalidPost = true;
             model.addAttribute("invalidPost", invalidPost);
