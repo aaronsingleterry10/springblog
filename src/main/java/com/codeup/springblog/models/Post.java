@@ -20,6 +20,9 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User parentUser;
 
+    @OneToMany(mappedBy = "parentPost")
+    private List<Image> images;
+
     @ManyToMany
     @JoinTable(
             name = "post_tag",
@@ -63,6 +66,14 @@ public class Post {
 
     public void setParentUser(User parentUser) {
         this.parentUser = parentUser;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 
     public List<Tag> getTags() {
