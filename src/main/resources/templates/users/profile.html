@@ -5,11 +5,11 @@
 <nav th:replace="partials/navbar :: navbar"/>
 <h1>Hello world</h1>
 <h1>Welcome, <span th:text="${user.username}"></span>!</h1>
-<!--<h3>Here are your posts:</h3>-->
-<!--<div th:each="post : ${posts}">-->
-<!--    <div th:text="${post.title}"></div>-->
-<!--    <div th:text="${post.body}"></div>-->
-<!--</div>-->
+<h3>Here are your posts:</h3>
+<div th:each="post : ${posts}">
+    <div th:text="${post.title}"></div>
+    <div th:text="${post.body}"></div>
+</div>
 
 <!--<div sec:authorize="isAuthenticated()">-->
 <!--    This content is only shown to authenticated users.-->
