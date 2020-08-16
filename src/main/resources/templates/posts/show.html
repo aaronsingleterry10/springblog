@@ -17,6 +17,9 @@
             <button class="btn btn-secondary">Delete</button>
         </form>
     </div>
+    <div th:each="img : ${post.images}">
+        <img th:src="${img.imageUrl}" alt="">
+    </div>
 </div>
 </body>
 </html>
