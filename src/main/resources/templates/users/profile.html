@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-</head>
+<head th:replace="partials/navbar :: head"/>
 <body>
+<nav th:replace="partials/navbar :: navbar"/>
 <h1>Hello world</h1>
 <h1>Welcome, <span th:text="${user.username}"></span>!</h1>
 <!--<h3>Here are your posts:</h3>-->
