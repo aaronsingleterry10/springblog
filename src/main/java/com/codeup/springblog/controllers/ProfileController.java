@@ -28,13 +28,13 @@ public class ProfileController {
         System.out.println(loggedInUser.getUsername());
         List<Post> allPosts = postsDao.findAll();
         List<Post> loggedInUserPosts = new ArrayList<>();
-//        for(Post x : allPosts) {
-//            if (x.getParentUser().getId() == loggedInUser.getId()) {
-//                loggedInUserPosts.add(x);
-//            }
-//        }
+        for(Post x : allPosts) {
+            if (x.getParentUser().getId() == loggedInUser.getId()) {
+                loggedInUserPosts.add(x);
+            }
+        }
         model.addAttribute("user", loggedInUser);
-//        model.addAttribute("posts", loggedInUserPosts);
+        model.addAttribute("posts", loggedInUserPosts);
         return "/users/profile";
     }
 
