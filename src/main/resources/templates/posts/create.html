@@ -21,11 +21,15 @@
             </div>
             <textarea class="form-control" name="body" id="body" aria-label="Body" th:field="*{body}"></textarea>
         </div>
-
-        <!--        <input type="hidden" th:object="${user}">-->
+        <br>
+        <input type="hidden" id="img" value="" name="image">
+        <button id="upload" class="btn btn-primary mb-2">Upload image</button>
         <br>
         <button class="btn btn-secondary btn-lg btn-block">Create post!</button>
     </form>
 </main>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script th:src="@{/js/keys.js}"></script>
+<script type="text/javascript" th:src="@{/js/filestack-api.js}"></script>
 </body>
 </html>
