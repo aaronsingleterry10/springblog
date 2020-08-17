@@ -1,7 +1,9 @@
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.Image;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
+import com.codeup.springblog.repositories.ImagesRepository;
 import com.codeup.springblog.repositories.PostsRepository;
 import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
@@ -21,12 +23,14 @@ public class PostController {
     private final UserRepository usersDao;
     private final EmailService emailService;
     private final PostService postService;
+    private final ImagesRepository imagesDao;
 
-    public PostController(PostsRepository postsDao, UserRepository usersDao, EmailService emailService, PostService postService) {
+    public PostController(PostsRepository postsDao, UserRepository usersDao, EmailService emailService, PostService postService, ImagesRepository imagesDao) {
         this.postsDao = postsDao;
         this.usersDao = usersDao;
         this.emailService = emailService;
         this.postService = postService;
+        this.imagesDao = imagesDao;
     }
 
     @GetMapping("/posts")
@@ -47,26 +51,26 @@ public class PostController {
     @GetMapping("/posts/create")
     public String createPost(Model model) {
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println(loggedInUser.getUsername());
-        System.out.println(loggedInUser.getId());
         model.addAttribute("post", new Post());
 //        model.addAttribute("user", loggedInUser);
         return "/posts/create";
     }
 
     @PostMapping("/posts/create")
-    public String newPost(@ModelAttribute Post post, Model model) {
+    public String newPost(@ModelAttribute Post post, Model model, @RequestParam(name = "image") String image) {
         if (postsDao.findByTitle(post.getTitle()) != null) {
             boolean invalidPost = true;
             model.addAttribute("invalidPost", invalidPost);
             return "/posts/create";
         }
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Image newImage = new Image();
         post.setParentUser(user);
         postsDao.save(post);
+        newImage.setParentPost(post);
+        newImage.setImageUrl(image);
+        imagesDao.save(newImage);
 //        User loggedInUser = usersDao.findByUsername(user.getUsername());
-        System.out.println(user.getUsername());
-        System.out.println(user.getId());
 //        postService.createNewPost(post, loggedInUser.getId());
 //        emailService.prepareAndSend(post, "New Post Alert", "Hello, this is just a message alerting you that you have created a new post!");
         return "redirect:/posts";
