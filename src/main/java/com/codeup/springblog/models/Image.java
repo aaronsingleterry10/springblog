@@ -12,6 +12,9 @@ public class Image {
     @Column(nullable = false)
     private String imageUrl;
 
+    @Column(nullable = false)
+    private String fileType;
+
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post parentPost;
@@ -40,5 +43,13 @@ public class Image {
 
     public void setParentPost(Post parentPost) {
         this.parentPost = parentPost;
+    }
+
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 }
