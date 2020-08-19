@@ -17,8 +17,14 @@
             <button class="btn btn-secondary">Delete</button>
         </form>
     </div>
-    <div th:each="img : ${post.images}">
-        <img th:src="${img.imageUrl}" alt="">
+    <div th:each="photo : ${photos}">
+        <img th:src="${photo.imageUrl}" alt="" class="mb-3">
+    </div>
+    <div th:each="video : ${videos}">
+        <video controls>
+            <source th:src="${video.imageUrl}">
+        </video>
+        <br>
     </div>
 </div>
 </body>
