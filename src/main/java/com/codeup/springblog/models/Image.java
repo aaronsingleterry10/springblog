@@ -21,6 +21,11 @@ public class Image {
 
     public Image(){}
 
+    public Image(String imageUrl, String fileType) {
+        this.imageUrl = imageUrl;
+        this.fileType = fileType;
+    }
+
     public long getId() {
         return id;
     }

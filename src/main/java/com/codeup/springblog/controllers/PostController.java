@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -43,8 +45,20 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String getIndividualPost(@PathVariable long id, Model model) {
-//        Post singlePost = postsDao.getOne(id);
+        List<Image> images = postsDao.getOne(id).getImages();
+        List<Image> photos = new ArrayList<>();
+        List<Image> videos = new ArrayList<>();
+        for (Image x : images) {
+            System.out.println(x.getFileType());
+            if (x.getFileType().equalsIgnoreCase("video/mp4")) {
+                videos.add(x);
+            } else if (x.getFileType().equalsIgnoreCase("image/jpeg")) {
+                photos.add(x);
+            }
+        }
         model.addAttribute("post", postService.returnIndividualPost(id));
+        model.addAttribute("videos", videos);
+        model.addAttribute("photos", photos);
         return "/posts/show";
     }
 
@@ -57,21 +71,25 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String newPost(@ModelAttribute Post post, Model model, @RequestParam(name = "image") String image) {
-        if (postsDao.findByTitle(post.getTitle()) != null) {
+    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model model, @RequestParam(name = "images") String[] images, @RequestParam(name = "file-type") String[] fileType) {
+        if (postsDao.findByTitle(title) != null) {
             boolean invalidPost = true;
             model.addAttribute("invalidPost", invalidPost);
             return "/posts/create";
         }
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Image newImage = new Image();
+        Post post = new Post(title, body, user);
+        List<String> newImages = Arrays.asList(images);
+        List<String> fileTypes = Arrays.asList(fileType);
         post.setParentUser(user);
         postsDao.save(post);
-        newImage.setParentPost(post);
-        newImage.setImageUrl(image);
-        imagesDao.save(newImage);
-//        User loggedInUser = usersDao.findByUsername(user.getUsername());
-//        postService.createNewPost(post, loggedInUser.getId());
+        for (int i = 0; i < newImages.size(); i++) {
+            Image newImage = new Image();
+            newImage.setParentPost(post);
+            newImage.setImageUrl(newImages.get(i));
+            newImage.setFileType(fileTypes.get(i));
+            imagesDao.save(newImage);
+        }
 //        emailService.prepareAndSend(post, "New Post Alert", "Hello, this is just a message alerting you that you have created a new post!");
         return "redirect:/posts";
     }
