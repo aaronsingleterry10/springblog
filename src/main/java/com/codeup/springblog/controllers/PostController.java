@@ -93,18 +93,6 @@ public class PostController {
 //        emailService.prepareAndSend(post, "New Post Alert", "Hello, this is just a message alerting you that you have created a new post!");
         return "redirect:/posts";
     }
-//    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
-//        Random rand = new Random();
-//        int id = rand.nextInt(4) + 1;
-//        long newId = id;
-//        User user = usersDao.findById(newId);
-//        Post newPost = new Post();
-//        newPost.setTitle(title);
-//        newPost.setBody(body);
-//        newPost.setParentUser(user);
-//        postsDao.save(newPost);
-//        return "redirect:/posts";
-//    }
 
     @GetMapping("/posts/{id}/edit")
     public String toUpdatePost(@PathVariable long id, Model model) {
@@ -120,15 +108,6 @@ public class PostController {
         postsDao.save(post);
         return "redirect:/posts";
     }
-
-//    @PostMapping("/posts/{id}/edit")
-//    public String updatePost(@PathVariable long id, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
-//        Post updatePost = postsDao.findById(id);
-//        updatePost.setTitle(title);
-//        updatePost.setBody(body);
-//        postsDao.save(updatePost);
-//        return "redirect:/posts";
-//    }
 
     @PostMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
